@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--html5-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Arduino SSO - Login</title>
+  <link rel="stylesheet" href="/fonts/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="/css/arduino-icons.css">
+  <link rel="stylesheet" href="/css/animation.css"><!--[if IE 7]>
+  <link rel="stylesheet" href="/css/arduino-icons-ie7.css"><![endif]-->
+  <!--[if gte IE 9]><!-->
+  <link rel='stylesheet' href='/css/foundation2.responsive.css' type='text/css' />
+  <![endif]-->
+  <!--[if IE 8]>
+  <link rel='stylesheet' href='/css/foundation_ie8.css' type='text/css' />
+  <![endif]-->
+  <link rel="stylesheet" href="/css/typeplate.css"  type="text/css"/>
+
+  <link rel="stylesheet" href="/css/common.responsive.css"  type="text/css"/>
+  <link rel="stylesheet" href="/css/profile_page.css" type="text/css" >
+  <link rel="stylesheet" href="/css/newsletter-popup.css" type="text/css" >
+
+  <script src="/js/vendor/custom.modernizr.js"></script>
+  <script src="/js/vendor/jquery.js"></script>
+
+
+    </head>
+<body>
+
+<div id="page">
+
+
+<script>
+       	var userAgent = (navigator.userAgent || navigator.vendor || window.opera).toLowerCase();
+       	if(userAgent.indexOf('mac')>0){
+       		$("head").append('<style type="text/css">@-moz-document url-prefix() {h1 a, h2 a, h3 a, h4 a, h5 a, h1 a:hover, h2 a:hover, th a, th a:hover, h3 a:hover, h4 a:hover, h5 a:hover, #wikitext h2 a:hover, #wikitext h3 a:hover, #wikitext h4 a:hover {padding-bottom: 0.5em!important;} #pageheader .search input{font-family: "TyponineSans Regular 18";} #pagefooter .monospace{margin-top: -4px;} #navWrapper ul.left &gt; li{margin-top: -2px; padding-bottom: 2px;}#navWrapper ul.right &gt; li{margin-top: -5px; padding-bottom: 5px;}#navWrapper ul.right &gt; li ul{margin-top: 4px;} .slider-container .fixed-caption p{padding:8px 0 14px 0}}</style>');
+       	}
+</script>
+
+<!--[if IE]>
+<link rel='stylesheet' href='/css/ie-monospace.css' type='text/css' />
+<![endif]-->
+
+<div id="menuWings" class="fixed"></div>
+
+<!--[if IE 8]>
+<div class="alert-box panel ie8alert">
+  <p><strong>Arduino.cc offers limited compatibility for Internet Explorer 8. Get a modern browser as Chrome, Firefox or Safari.</strong></p>
+  <a href="" class="close">&times;</a>
+</div>
+<![endif]-->
+
+<div id="pageheader">
+       	<div class="row hide-for-small" class="contain-to-grid">
+       		<div>
+       			<div class="brand">
+       				<a href="https://www.arduino.cc">
+       					<img src="/img/GenuinoHeader.svg" alt="Arduino" />
+       				</a>
+       			</div>
+       		</div>
+       	</div>
+
+       	<div class="row" class="contain-to-grid">
+       		<div class="brand hide-for-medium-up">
+       			<a href="https://www.arduino.cc">
+       				<img src="/img/GenuinoHeader.svg" alt="Arduino" />
+       			</a>
+       		</div>
+
+       		<!--[if gte IE 9]><!-->
+       		<div id="navWrapper"  class="sticky">
+       		<!-- <![endif]-->
+       		<!--[if IE 8]>
+       			<div id="navWrapper">
+       		<![endif]-->
+       		<nav class="top-bar"  data-options="is_hover:true" >
+       			<ul class="title-area">
+       				<li class="name"></li>
+       				<li class="toggle-topbar menu-icon">
+       					<a href="#">
+       						<span></span>
+       					</a>
+       				</li>
+       			</ul>
+
+       			<section class="top-bar-section clearfix">
+       				<ul class="left">
+       					<li  id="navLogo">
+       						<a href="https://www.arduino.cc">
+       							<img src="/img/logo_46.png" alt="userpicture" />
+       						</a>
+       					</li>
+       					<li id="navHome"><a href="https://www.arduino.cc">Home</a></li>
+       					<li><a href="https://store.arduino.cc">Buy</a></li>
+       					<li><a href="https://www.arduino.cc/en/Main/Software">Download</a></li>
+       					<li class="has-dropdown"><a href="https://www.arduino.cc/en/Main/Products">Products</a>
+       						<ul class="dropdown">
+       							<li><a href="https://www.arduino.cc/en/Main/Products">Arduino <span class="menudescription">(USA only)</span></a></li>
+       							<li><a href="https://www.arduino.cc/en/Main/GenuinoProducts">Genuino <span class="menudescription">(outside USA)</span></a></li>
+       							<li><a href="https://www.arduino.cc/en/ArduinoAtHeart/Products">AtHeart</a></li>
+       							<li><a href="https://www.arduino.cc/en/ArduinoCertified/Products">Certified</a></li>
+       						</ul>
+       					</li>
+       					<li class="has-dropdown"><a href="#">Learning</a>
+       						<ul class="dropdown">
+       							<li><a href="https://www.arduino.cc/en/Guide/HomePage">Getting started</a></li>
+       							<li><a href="https://www.arduino.cc/en/Tutorial/HomePage">Tutorials</a></li>
+       							<li><a href="https://www.arduino.cc/en/Reference/HomePage">Reference</a></li>
+       							<li><a href="https://www.arduino.cc/en/Main/CTCprogram">CTC Program</a></li>
+       							<li><a href="http://playground.arduino.cc">Playground</a></li>
+       						</ul>
+       					</li>
+       					<li><a href="https://forum.arduino.cc">Forum</a></li>
+       					<li class="has-dropdown"><a href="#">Support</a>
+       						<ul class="dropdown">
+       							<li><a href="https://www.arduino.cc/en/Main/FAQ">FAQ</a></li>
+       							<li><a href="https://www.arduino.cc/en/ContactUs">Contact Us</a></li>
+       						</ul>
+       					</li>
+       					<li><a href="https://blog.arduino.cc">Blog</a></li>
+       				</ul>
+
+       									<ul class="right">
+       						<li><a href="/auth/login" class="cart">LOG IN</a></li>
+       						<li><a href="/auth/signup" class="cart">SIGN UP</a></li
+       					</ul>
+       									</section>
+       			</nav>
+       		</div>
+       	</div>
+</div>
+
+
+<script>
+
+$(document).ready(function() {
+       	function setNumber(url, selector){
+       		$.ajax({
+       			dataType: "jsonp",
+       			url: url,
+       			success: function(json, status){
+       				if(json > 0){
+       					$(selector).html(json);
+       					$(selector).css('display', 'inline');
+       				}else {
+       					$(selector).css('display', 'none');
+       				}
+       			},
+       			error: function(xOptions, status){
+       				console.log('error', xOptions, status);
+       			},
+       			complete: function(xOptions, status){
+       			}
+       		});
+       	}
+
+       	setNumber ('https://forum.arduino.cc/index.php?api&pm&callback=unreadpm', '.js-pmNumberItem');
+       	setNumber ('https://store.arduino.cc/index.php?api=cart', '#js-cartNumberItem');
+});
+
+</script>
+
+
+
+  <div class="row">
+    <div class="large-12 twelve column">
+
+<div>
+  <section id="userHeader" class="row">
+    <div class="row flash form messages">
+  <div class="large-12 twelve columns">
+            <div class="large-offset-2 large-8 offset-by-two eight columns message alert-box alert" ng-show="message.alert" ng-bind-html="message.alert">
+      Username and password do not match    </div>
+      </div>
+</div>
+    <div class="large-12 twelve columns">
+      <div class="large-offset-2 large-8 offset-by-two eight columns">
+        <h3>Log-in</h3>
+        <!-- <form name="loginForm">    -->
+        <form action="https://id.arduino.cc/auth/login/?go=1" method="post" accept-charset="utf-8">
+<input type="hidden" name="CSRF_TOKEN" value="7d58d13b7a45ac648e33e794dfd8aee4ea65bd14" />
+          <dl>
+            <dt>
+              <label for="username">Username</label>
+            </dt>
+            <dd>
+              <input type="text" name="username" value="username" id="username" size="30"  />            </dd>
+            <dt>
+              <label for="password">Password</label>
+            </dt>
+            <dd>
+              <input type="password" name="password" value="" id="password" size="30"  />            </dd>
+
+
+            <dt></dt>
+            <dd>
+              <input type="checkbox" name="remember" value="1" id="remember" style="margin:0;padding:0"  />              <label for="remember" style="display:inline;">Remember me</label>
+            </dd>
+            <dt></dt>
+            <dd class="styleBtn right">
+              <button type="submit" class="small button" data-buttonspinner ng-click="login()" ng-disabled="loginForm.$invalid">Login</button>
+            </dd>
+            <dd>
+              <a href="/auth/forgot_password">Reset password</a>
+              or
+              <a href="/auth/signup">Sign Up</a>
+            </dd>
+          </dl>
+        </form>      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // load buttonspinner
+      // $('[data-buttonspinner]').buttonspinner();
+    });
+  </script>
+</div>
+    </div>
+  </div>
+
+
+</div>
+
+<div id="newsletterModal" class="reveal-modal small">
+  <form action="//www.arduino.cc/subscribe.php" method="post" name="sendy-subscribe-form" id="sendy-subscribe-form" class="form-popup">
+    <div class="modalHeader">
+      <h3 style="line-height: 1.8rem;" class="modal-header-alt">This link has expired. <br>Please re-subscribe to our Newsletters.</h3>
+      <h3 class="modal-header-main">Subscribe to our Newsletters</h3>
+    </div>
+    <div class="modalBody" id="newsletterModalBody">
+        <div id="newsletterEmailField" class="row" style="padding-left: 0">
+          <div class="large-2 columns">
+            <label for="email" class="newsletter-form-label inline">Email</label>
+          </div>
+          <div class="large-10 columns" style="padding-left: 0">
+            <input placeholder="Enter your email address" type="email" name="email" class="subscribe-form-input" />
+            <p id="emailMissing" class="newsletterPopupError">Please enter a valid email to subscribe</p>
+          </div>
+        </div>
+        <div style="margin-left:20px">
+          <div style="margin-bottom:0.3em">
+            <input style="display:none" type="checkbox" checked name="list[]" value="arduino_newsletter_id" id="worldwide" class="newsletter-form-checkbox" />
+            <label for="worldwide"></label>
+            <div style="display:inline-block" class="newsletter-form-label">Arduino Newsletter</div>
+          </div>
+          <div style="margin-bottom:0.3em">
+            <input style="display:none" type="checkbox" checked name="list[]" value="arduino_store_newsletter_id" id="store" class="newsletter-form-checkbox" />
+            <label for="store"></label>
+            <div style="display:inline-block" class="newsletter-form-label">Arduino Store Newsletter</div>
+          </div>
+          <div>
+            <input style="display:none" type="checkbox" name="list[]" value="arduino_italians_newsletter_id" id="italians" class="newsletter-form-checkbox" />
+            <label for="italians"></label>
+            <div style="display:inline-block" class="newsletter-form-label">Newsletter Italiana</div>
+          </div>
+        </div>
+        <div>
+          <p class="newsletterPopupError2" id="newsletterSubscribeStatus"></p>
+        </div>
+    </div>
+    <div class="row modalFooter">
+      <div class="form-buttons-row">
+
+          <button type="button" value="Cancel" class="popup-form-button white cancel-modal close-reveal-modal">Cancel</button>
+          <button type="submit" name="Subscribe" id="subscribe-submit-btn" class="popup-form-button">Next</button>
+
+      </div>
+    </div>
+  </form>
+
+  <!-- step 2, confirm popup -->
+  <div class="confirm-popup" style="margin-bottom:1em">
+    <div class="modalHeader">
+      <h3>Confirm your email address</h3>
+    </div>
+    <div class="modalBody" id="newsletterModalBody" style="padding-right:1em;margin-bottom:0">
+        <p style="margin-bottom:1em;font-size:15px">
+          We need to confirm your email address.<br>
+          To complete the subscription, please click the link in the
+          email we just sent you.
+        </p>
+        <p style="margin-bottom:1em;font-size:15px">
+          Thank you for subscribing!
+        </p>
+        <p style="margin-bottom:1em;font-size:15px">
+          Arduino<br>
+          via Egeo 16<br>
+          Torino, 10131<br>
+          Italy<br>
+        </p>
+    </div>
+    <div class="row modalFooter">
+      <div class="form-buttons-row">
+
+          <button name="Ok" class="popup-form-button" id="close-confirm-popup">Ok</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div id="pagefooter" class="pagefooter">
+  <div class="row">
+    <div class="large-8 eight columns">
+      <div class="large-4 four columns newsletter-box">
+        <!-- Begin Sendy Signup Form -->
+      <h6>Newsletter</h6>
+      <div>
+          <input type="email" name="email" class="email" id="sendy-EMAIL" placeholder="Enter your email to sign up">
+          <i class="icon-right-small"></i>
+          <input value="Subscribe" name="subscribe" id="sendy-subscribe" class="newsletter-button">
+      </div>
+      <!--End sendy_embed_signup-->
+      </div>
+      <div class="clearfix"></div>
+      <ul class="inline-list">
+        <li class="monospace">&copy;2016 Arduino</li>
+        <li><a href="https://www.arduino.cc/en/Main/CopyrightNotice">Copyright Notice</a></li>
+        <li><a href='https://www.arduino.cc/en/Main/ContactUs'>Contact us</a></li>
+        <li><a href='https://www.arduino.cc/en/Main/AboutUs'>About us</a></li>
+        <li><a href='https://www.arduino.cc/Careers'>Careers</a></li>
+      </ul>
+    </div>
+    <div class="large-4 four columns">
+      <ul id="arduinoSocialLinks" class="arduino-social-links">
+        <li>
+          <a href="https://twitter.com/arduino">
+            <img src="/img/twitter.png" />
+          </a>
+        </li>
+        <li>
+          <a href="http://www.facebook.com/official.arduino">
+            <img src="/img/facebook.png" />
+          </a>
+        </li>
+        <li>
+          <a href="https://plus.google.com/+Arduino">
+            <img src="/img/gplus.png" />
+          </a>
+        </li>
+        <li>
+          <a href="http://www.flickr.com/photos/arduino_cc">
+            <img src="/img/flickr.png" />
+          </a>
+        </li>
+        <li>
+          <a href="http://youtube.com/arduinoteam">
+            <img src="/img/youtube.png" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="pagefooter">
+  <div class="row">
+    <div class="small-8 columns">
+      <ul class="inline-list">
+       <li class="monospace">&copy;Arduino</li>
+              <li><a href="https://www.arduino.cc/en/Main/CopyrightNotice">Copyright Notice</a></li>
+       <li><a href="https://www.arduino.cc/en/Main/ContactUs">Contact us</a></li>
+    </ul>
+   </div>
+  </div>
+</div> -->
+  <!--/PageFooterFmt-->
+
+  <!--[if gte IE 9]><!-->
+  <script src="/js/foundation.min.js"></script>
+  <script src="/js/foundation.topbar.custom.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <script type="application/javascript">
+    $(document).ready(function() {
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    var openPopup = function() {
+
+      $('.confirm-popup').hide();
+      $('.form-popup').show();
+
+      var modalBody = $('#newsletterModalBody');
+      var emailInput = modalBody.find('#newsletterEmailField').find('input');
+      var subscribeButton = $('#subscribe-submit-btn');
+      var emailMissingP = modalBody.find('#emailMissing');
+      var formValid = false;
+      var confirmHtml = $('#newsletterModalConfirm').html();
+      var email = $('#sendy-EMAIL').val();
+
+      //reset popup values / appearance
+      $("#newsletterSubscribeStatus").hide();
+      $('#newsletterModal').find('.modal-header-main').show();
+      $('#newsletterModal').find('.modal-header-alt').hide();
+      emailMissingP.hide();
+      emailInput.val('');
+      modalBody.find('#store').prop('checked', true);
+      modalBody.find('#worldwide').prop('checked', true);
+
+      //both checkboxes checked at beginning
+
+      subscribeButton.removeAttr('disabled');
+
+      //If user didn't provide email by footer input box, show input box in the popup, else just checkboxes
+      if(validateEmail(email)) {
+        emailInput.val(email);
+        formValid = true;
+      } else {
+        emailMissingP.show();
+        subscribeButton.attr('disabled', 'disabled');
+        $('#sendy-EMAIL').val('');
+        formValid = false;
+      }
+
+      $('#newsletterModal').foundation('reveal', 'open');
+
+      emailInput.on('input propertychange paste', function(e) {
+           if(!validateEmail(emailInput.val())) {
+              emailMissingP.show();
+              subscribeButton.attr('disabled', 'disabled');
+              formValid = false;
+           } else {
+              formValid = true;
+              emailMissingP.hide();
+              subscribeButton.removeAttr('disabled');
+           }
+      });
+    };
+
+    $('#sendy-EMAIL').on('keypress', function(e) {
+      if(e.keyCode == 13) {
+        openPopup();
+      }
+    });
+
+    $('#sendy-subscribe').on('click', function() {
+      openPopup();
+    });
+
+    $("#sendy-subscribe-form").on('keypress', function(e) {
+        if(e.keyCode == 13 && formValid) {
+          e.preventDefault();
+          $(this).submit();
+        }
+    });
+
+    $('#subscribe-submit-btn').on('click', function(e){
+      e.preventDefault();
+      // disable 'NEXT' button to avoid multiple submits
+      $('#subscribe-submit-btn').attr('disabled', 'disabled');
+      $("#sendy-subscribe-form").submit();
+    });
+
+    $('#close-confirm-popup').on('click', function(e){
+      $('#newsletterModal').foundation('reveal', 'close');
+    });
+
+    // trigger click on checkbox when clicking text label
+    $('.newsletter-form-label').on('click', function(e){
+      $(this).siblings("label").click();
+    });
+
+    $("#sendy-subscribe-form").on('submit', function(e){
+      e.preventDefault();
+
+      var $form = $(this),
+      //name = $form.find('input[name="name"]').val(),
+      email = $form.find('input[name="email"]').val(),
+      lists = $form.find('input[name="list[]"]:checked'),
+      url = $form.attr('action');
+
+      //reset
+      $("#newsletterSubscribeStatus").hide();
+
+      if(!lists.length) {
+        $("#newsletterSubscribeStatus").html("Please select at least <br> one newsletter.");
+        $("#newsletterSubscribeStatus").show();
+        //button 'NEXT' can be enabled
+        $('#subscribe-submit-btn').removeAttr('disabled');
+        return;
+      }
+
+      var listValues = [];
+      for(var i=0; i<lists.length; i++) {
+        listValues.push($(lists[i]).val());
+      }
+
+      $.post(url, {lists:listValues, email:email},
+        function(data) {
+            if(data)
+            {
+              if(data=="All fields are required.")
+              {
+                $("#newsletterSubscribeStatus").text("Please fill in your email.");
+                $("#newsletterSubscribeStatus").show();
+              }
+              else if(data=="Invalid email address.")
+              {
+                $("#newsletterSubscribeStatus").text("Your email address is invalid.");
+                $("#newsletterSubscribeStatus").show();
+              }
+              // else if(data=="Invalid list ID.")
+              // {
+              //   $("#newsletterSubscribeStatus").text("Your list ID is invalid.");
+              //   $("#newsletterSubscribeStatus").show();
+              // }
+              else if(data=="Already subscribed.")
+              {
+                $("#newsletterSubscribeStatus").text("You're already subscribed!");
+                $("#newsletterSubscribeStatus").show();
+              }
+              else if(data=="No list selected.")
+              {
+                $("#newsletterSubscribeStatus").text("Please select at least <br> one newsletter.");
+                $("#newsletterSubscribeStatus").show();
+              }
+              else
+              {
+                //$("#newsletterSubscribeStatus").text("You're subscribed!");
+                //change popup
+                $('.form-popup').hide();
+                $('.confirm-popup').show();
+
+              }
+            }
+            else
+            {
+              alert("Sorry, unable to subscribe. Please try again later!");
+            }
+          //button 'NEXT' can be enabled now
+          $('#subscribe-submit-btn').removeAttr('disabled');
+        }
+      );
+
+    });
+
+  });
+  </script>
+  <!--<![endif]-->
+  <!--[if IE 8]>
+  <script src="/js/foundation_ie8.min.js"></script>
+  <script src="/js/jquery.foundation.alerts.js"></script>
+  <script src="/js/app.js"></script>
+  <![endif]-->
+
+  <script src="/js/profile.js"></script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-22581631-5', 'arduino.cc');
+  ga('send', 'pageview');
+  </script>
+
+</div>
+
+</body>
+</html>
